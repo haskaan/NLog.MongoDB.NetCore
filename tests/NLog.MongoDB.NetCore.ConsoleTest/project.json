@@ -1,0 +1,37 @@
+{
+  "title": "NLog.MongoDB.NetCore.ConsoleTest",
+  "copyright": "Kaan HAS",
+  "description": "An NLog target for MongoDB persistance on the .NET Core platform.",
+  // Version information for an assembly consists of the following four values:
+  //
+  //      Major Version
+  //      Minor Version
+  //      Build Number
+  //      Revision
+  //
+  // You can specify all the values or you can default the Build and Revision Numbers
+  // by using the '*' as shown below:
+  "version": "1.0.0-*",
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "copyToOutput": {
+      "include": [ "NLog.config" ]
+    }
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": "1.0.0",
+    "NLog.MongoDB.NetCore": "0.1.0-*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  },
+
+  "runtimes": {
+    "win10-x64": {}
+  }
+}

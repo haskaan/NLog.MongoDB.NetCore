@@ -1,0 +1,30 @@
+{
+  "title": "NLog.MongoDB.NetCore",
+  "copyright": "Kaan HAS",
+  "description": "An NLog target for MongoDB persistance on the .NET Core platform.",
+  // Version information for an assembly consists of the following four values:
+  //
+  //      Major Version
+  //      Minor Version
+  //      Build Number
+  //      Revision
+  //
+  // You can specify all the values or you can default the Build and Revision Numbers
+  // by using the '*' as shown below:
+  "version": "0.1.0-*",
+
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.1.2",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
+    "Microsoft.Extensions.Configuration.Json": "1.1.2",
+    "MongoDB.Driver": "2.4.4",
+    "NETStandard.Library": "1.6.1",
+    "NLog": "5.0.0-beta08"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
