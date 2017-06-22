@@ -76,3 +76,64 @@ _property_ - Specifies a dictionary property on the Properties field. There can 
 Examples
 --------
 ### Default Configuration with Extra Properties
+
+#### NLog.config target
+
+```xml
+<target xsi:type="Mongo"
+        name="mongoDefault"
+        connectionString="mongodb://localhost/Logging"
+        collectionName="DefaultLog"
+        cappedCollectionSize="26214400">
+  <property name="ThreadID" layout="${threadid}" bsonType="Int32" />
+  <property name="ThreadName" layout="${threadname}" />
+  <property name="ProcessID" layout="${processid}" bsonType="Int32" />
+  <property name="ProcessName" layout="${processname:fullName=true}" />
+  <property name="UserName" layout="${windows-identity}" />
+</target>
+```
+
+### Complete Custom Document
+
+#### NLog.config target
+
+```xml
+<target xsi:type="Mongo"
+        name="mongoCustom"
+        includeDefaults="false"
+        connectionString="mongodb://localhost"
+        collectionName="CustomLog"
+        databaseName="Logging"
+        cappedCollectionSize="26214400">
+  <field name="Date" layout="${date}" bsonType="DateTime" />
+  <field name="Level" layout="${level}"/>
+  <field name="Message" layout="${message}" />
+  <field name="Logger" layout="${logger}"/>
+  <field name="Exception" layout="${exception:format=tostring}" />
+  <field name="ThreadID" layout="${threadid}" bsonType="Int32" />
+  <field name="ThreadName" layout="${threadname}" />
+  <field name="ProcessID" layout="${processid}" bsonType="Int32" />
+  <field name="ProcessName" layout="${processname:fullName=true}" />
+  <field name="UserName" layout="${windows-identity}" />
+</target>
+```
+
+#### Custom Output JSON
+
+```JSON
+{
+    "_id": {
+        "$oid": "594b8db3b65a8d0db4204123"
+    },
+    "Date": {
+        "$date": "2017-06-22T09:28:19.863Z"
+    },
+    "Level": "Info",
+    "Message": "LogLevel.Info: , k=1071, l=1299",
+    "Logger": "NLog.MongoDB.NetCore.ConsoleTest.Program",
+    "ThreadID": 1,
+    "ProcessID": 3508,
+    "ProcessName": "D:\\SPECIALS\\PROJECTS\\NLog.MongoDB.NetCore\\tests\\NLog.MongoDB.NetCore.ConsoleTest\\bin\\Debug\\netcoreapp1.0\\win10-x64\\NLog.MongoDB.NetCore.ConsoleTest.exe",
+    "UserName": "kaan.has"
+}
+```
