@@ -1,7 +1,21 @@
 {
   "title": "NLog.MongoDB.NetCore",
-  "copyright": "Kaan HAS",
   "description": "An NLog target for MongoDB persistance on the .NET Core platform.",
+  "authors": [ "Kaan HAS" ],
+  "copyright": "Kaan HAS",
+
+  "packOptions": {
+    "owners": [ "KaanH" ],
+    "tags": [ "NLog, mongodb, netcore, netstandard, mongo, logging, log" ],
+    "projectUrl": "https://github.com/ByNeo/NLog.MongoDB.NetCore",
+    "licenseUrl": "https://raw.githubusercontent.com/ByNeo/NLog.MongoDB.NetCore/master/LICENCE",
+    "requireLicenseAcceptance": true,
+    "iconUrl": "http://nlog-project.org/N.png",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/ByNeo/NLog.MongoDB.NetCore"
+    }
+  },
   // Version information for an assembly consists of the following four values:
   //
   //      Major Version
@@ -13,17 +27,36 @@
   // by using the '*' as shown below:
   "version": "1.0.0-*",
 
-  "dependencies": {
-    "Microsoft.Extensions.Configuration": "1.1.2",
-    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
-    "Microsoft.Extensions.Configuration.Json": "1.1.2",
-    "MongoDB.Driver": "2.4.4",
-    "NETStandard.Library": "1.6.1",
-    "NLog": "5.0.0-beta08"
-  },
+
 
   "frameworks": {
+    "netstandard1.5": {
+      "dependencies": {
+        "Microsoft.Extensions.Configuration": "1.1.2",
+        "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
+        "Microsoft.Extensions.Configuration.Json": "1.1.2",
+        "MongoDB.Driver": "2.4.4",
+        "NETStandard.Library": "1.6.1",
+        "NLog": "5.0.0-beta08"
+      },
+      "buildOptions": {
+        "define": [ "NETSTANDARD1_5" ]
+      }
+    },
+
+
     "netstandard1.6": {
+      "dependencies": {
+        "Microsoft.Extensions.Configuration": "1.1.2",
+        "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
+        "Microsoft.Extensions.Configuration.Json": "1.1.2",
+        "MongoDB.Driver": "2.4.4",
+        "NETStandard.Library": "1.6.1",
+        "NLog": "5.0.0-beta08"
+      },
+      "buildOptions": {
+        "define": [ "NETSTANDARD1_6" ]
+      },
       "imports": "dnxcore50"
     }
   }
