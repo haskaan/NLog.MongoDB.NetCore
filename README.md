@@ -1,5 +1,9 @@
 NLog.MongoDB.NetCore
 ====================
+[![NuGet](https://img.shields.io/nuget/v/NLog.MongoDB.NetCore.svg)](https://www.nuget.org/packages/NLog.MongoDB.NetCore/)
+[![Build status](https://ci.appveyor.com/api/projects/status/p56vnc4gkiroydgx?svg=true)](https://ci.appveyor.com/project/ByNeo/nlog-mongodb-netcore)
+[![Join the chat at https://gitter.im/NLogMongoDBNetCore/NLogMongoDBNetCore](http://badges.gitter.im/nugetmongodbnetcore/nugetmongodbnetcore.svg)](https://gitter.im/NLogMongoDBNetCore/NLogMongoDBNetCore)
+
 An NLog target for MongoDB persistance on the .NET Core platform.
 
 
