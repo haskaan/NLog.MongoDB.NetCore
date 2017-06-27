@@ -6,7 +6,6 @@ environment:
     secure: +vzVo4DsD93fPeSkrIL12KQsq2VJrge4ZSt3KanSxtnifHsBXYmGko4Ck00sVOqD
   sonar_token:
     secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
-  myget_token: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
 
 build_script:
 - ps: >-
@@ -20,12 +19,8 @@ deploy:
 - provider: NuGet
   server: https://www.myget.org/F/nlogmongodbnetcore/api/v2/package
   api_key:
-    secure: $env:myget_token
+    secure: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
   skip_symbols: true
   artifact: /.*\.nupkg/
   on:
     branch: master
-
-- provider: Environment
-  on:
-    appveyor_repo_tag: true
