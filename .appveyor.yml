@@ -8,9 +8,8 @@ environment:
     secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
 
 build_script:
-- ps: >-
-    .build\build.ps1
-    .build\sonar_run.ps1
+- ps: .build\build.ps1
+- ps: .build\sonar_run.ps1
 
 artifacts:
 - path: artifacts\*.nupkg
