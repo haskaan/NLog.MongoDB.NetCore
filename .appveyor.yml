@@ -1,15 +1,8 @@
 version: 1.0.0-{build}
 configuration: Release
 
-environment:
-  github_auth_token:
-    secure: +vzVo4DsD93fPeSkrIL12KQsq2VJrge4ZSt3KanSxtnifHsBXYmGko4Ck00sVOqD
-  sonar_token:
-    secure: 2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825
-
 build_script:
 - ps: .build\build.ps1
-- ps: .build\sonar_run.ps1
 
 artifacts:
 - path: artifacts\*.nupkg

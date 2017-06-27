@@ -2,14 +2,9 @@ $projectFile = "src\NLog.MongoDB.NetCore\NLog.MongoDB.NetCore.xproj"
 $github = "ByNeo/NLog.MongoDB.NetCore"
 $sonarQubeID = "NLog.MongoDB.NetCore"
 $sonarQubeHost = "https://sonarcloud.io"
-$sonarToken = "QX9qNOgu0aFrYoIbe1MFqrXxW8kqEmB2RvTrCq12Xi2fF79K4V9jbjCqmtXiEnl5"
+$sonarToken = "2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
 
 if($env:APPVEYOR_REPO_NAME -eq $github){
-
-	echo $sonarToken
-	echo $env:sonar_token
-	echo $env:APPVEYOR_REPO_NAME
-	echo $env:APPVEYOR_PULL_REQUEST_NUMBER
 
     if(-not $sonarToken){
         Write-warning "not running SonarQube, no sonar_token"
