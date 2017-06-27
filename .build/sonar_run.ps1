@@ -3,6 +3,8 @@ $github = "ByNeo/NLog.MongoDB.NetCore"
 $sonarQubeID = "NLog.MongoDB.NetCore"
 $sonarQubeHost = "https://sonarcloud.io"
 
+choco install "msbuild-sonarqube-runner" -y
+
 MSBuild.SonarQube.Runner.exe begin \
                               /k:"$sonarQubeID" \
                               /d:"sonar.host.url=$sonarQubeHost" \
