@@ -5,8 +5,8 @@ $sonarQubeHost = "https://sonarcloud.io"
 
 choco install "msbuild-sonarqube-runner" -y
 
-SonarQube.Scanner.MSBuild.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.organization=byneo-github" /d:"sonar.login=GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI"
+SonarQube.Scanner.MSBuild.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.organization=byneo-github" /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
 
 MsBuild.exe $projectFile /t:Rebuild
 
-SonarQube.Scanner.MSBuild.exe end /d:"sonar.login=GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI"
+SonarQube.Scanner.MSBuild.exe end /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
