@@ -25,7 +25,6 @@ deploy:
   artifact: /.*\.nupkg/
   on:
     branch: master
-	appveyor_repo_tag: true
 
 - provider: NuGet
   server: https://www.myget.org/F/nlogmongodbnetcore/api/v2/package
