@@ -26,11 +26,6 @@ deploy:
   on:
     branch: master
 
-- provider: NuGet
-  server: https://www.myget.org/F/nlogmongodbnetcore/api/v2/package
-  api_key:
-    secure: $env:myget_token
-  skip_symbols: true
-  artifact: /.*\.nupkg/
+- provider: Environment
   on:
     appveyor_repo_tag: true
