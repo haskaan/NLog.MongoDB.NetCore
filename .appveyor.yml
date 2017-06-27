@@ -33,4 +33,4 @@ deploy:
   skip_symbols: true
   artifact: /.*\.nupkg/
   on:
-	appveyor_repo_tag: true
+    appveyor_repo_tag: true
