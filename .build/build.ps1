@@ -2,7 +2,7 @@
 # creates NuGet package at \artifacts
 dotnet --version
 
-dotnet restore
+dotnet restore -v Minimal
 dotnet pack .\src\NLog.MongoDB.NetCore\ --configuration release   -o artifacts
 
 # remove this when we get clean builds
