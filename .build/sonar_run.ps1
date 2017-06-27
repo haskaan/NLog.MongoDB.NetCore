@@ -3,10 +3,25 @@ $github = "ByNeo/NLog.MongoDB.NetCore"
 $sonarQubeID = "NLog.MongoDB.NetCore"
 $sonarQubeHost = "https://sonarcloud.io"
 
-choco install "msbuild-sonarqube-runner" -y
+if($env:APPVEYOR_REPO_NAME -eq $github){
 
-SonarQube.Scanner.MSBuild.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.organization=byneo-github" /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+    if(-not $env:sonar_token){
+        Write-warning "not running SonarQube, no sonar_token"
+        return;
+    }
 
-MsBuild.exe $projectFile /t:Rebuild
+    choco install "msbuild-sonarqube-runner" -y
+     
+    if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { 
+        MSBuild.SonarQube.Runner.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.organization=byneo-github" /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+    }
+    else {
+        MSBuild.SonarQube.Runner.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.organization=byneo-github" /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+    }
 
-SonarQube.Scanner.MSBuild.exe end /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+    MsBuild $projectFile /verbosity:minimal
+    MSBuild.SonarQube.Runner.exe end /d:"sonar.login=2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+
+}else {
+    Write-Output "not running SonarQube as we're on '$env:APPVEYOR_REPO_NAME'"
+}
