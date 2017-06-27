@@ -20,7 +20,8 @@ artifacts:
 deploy:
 - provider: NuGet
   server: https://www.myget.org/F/nlogmongodbnetcore/api/v2/package
-  api_key: $env:myget_token
+  api_key:
+    secure: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
   skip_symbols: true
   artifact: /.*\.nupkg/
   on:
