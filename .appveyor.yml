@@ -7,7 +7,7 @@ environment:
   sonar_token:
     secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
   myget_token:
-	secure: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
+    secure: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
 
 build_script:
 - ps: >-
