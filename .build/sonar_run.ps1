@@ -5,10 +5,7 @@ $sonarQubeHost = "https://sonarcloud.io"
 
 choco install "msbuild-sonarqube-runner" -y
 
-MSBuild.SonarQube.Runner.exe begin \
-                              /k:"$sonarQubeID" \
-                              /d:"sonar.host.url=$sonarQubeHost" \
-                              /d:"sonar.login=$env:sonar_token"
+MSBuild.SonarQube.Runner.exe begin /k:"$sonarQubeID" /d:"sonar.host.url=$sonarQubeHost" /d:"sonar.login=$env:sonar_token"
 
 MsBuild.exe $projectFile /t:Rebuild
 
