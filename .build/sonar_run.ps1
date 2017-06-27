@@ -11,4 +11,3 @@ SonarQube.Scanner.MSBuild.exe begin \
 MsBuild.exe $projectFile /t:Rebuild
 
 SonarQube.Scanner.MSBuild.exe end /d:"sonar.login=$env:sonar_token"
-      
