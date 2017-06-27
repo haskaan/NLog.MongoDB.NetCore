@@ -1,0 +1,15 @@
+version: 1.0.0-{build}
+configuration: Release
+build_script:
+- ps: .build\build.ps1
+artifacts:
+- path: artifacts\*.nupkg
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/nlogmongodbnetcore/api/v2/package
+  api_key:
+    secure: TWVKxbiZneCbY9ckMQxFhV+jhSir05VD2ZoX9lMzfSPCbjUdLo/FUZh3hemWcgGb
+  skip_symbols: true
+  artifact: /.*\.nupkg/
+  on:
+    branch: master
