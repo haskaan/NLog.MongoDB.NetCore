@@ -5,7 +5,7 @@ environment:
   github_auth_token:
     secure: +vzVo4DsD93fPeSkrIL12KQsq2VJrge4ZSt3KanSxtnifHsBXYmGko4Ck00sVOqD
   sonar_token:
-    secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
+    secure: 2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825
 
 build_script:
 - ps: .build\build.ps1
