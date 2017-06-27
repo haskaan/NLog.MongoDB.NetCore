@@ -3,11 +3,11 @@ $github = "ByNeo/NLog.MongoDB.NetCore"
 $sonarQubeID = "NLog.MongoDB.NetCore"
 $sonarQubeHost = "https://sonarcloud.io"
 
-SonarQube.Scanner.MSBuild.exe begin \
+MSBuild.SonarQube.Runner.exe begin \
                               /k:"$sonarQubeID" \
                               /d:"sonar.host.url=$sonarQubeHost" \
                               /d:"sonar.login=$env:sonar_token"
 
 MsBuild.exe $projectFile /t:Rebuild
 
-SonarQube.Scanner.MSBuild.exe end /d:"sonar.login=$env:sonar_token"
+MSBuild.SonarQube.Runner.exe end /d:"sonar.login=$env:sonar_token"
