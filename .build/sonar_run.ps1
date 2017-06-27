@@ -7,6 +7,7 @@ $sonarToken = "2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
 if($env:APPVEYOR_REPO_NAME -eq $github){
 
 	echo $sonarToken
+	echo $env:sonar_token
 	echo $env:APPVEYOR_REPO_NAME
 	echo $env:APPVEYOR_PULL_REQUEST_NUMBER
 
