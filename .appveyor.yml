@@ -11,6 +11,9 @@ build_script:
 - ps: .build\build.ps1
 - ps: .build\sonar_run.ps1
 
+cache:
+  - .\appveyor.sonar\cache
+
 artifacts:
 - path: artifacts\*.nupkg
 
