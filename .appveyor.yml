@@ -11,8 +11,8 @@ environment:
 
 build_script:
 - ps: >-
-	.build\build.ps1
-	.build\sonar_run.ps1
+    .build\build.ps1
+    .build\sonar_run.ps1
 
 artifacts:
 - path: artifacts\*.nupkg
