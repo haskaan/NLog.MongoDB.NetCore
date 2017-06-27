@@ -2,7 +2,7 @@ $projectFile = "src\NLog.MongoDB.NetCore\NLog.MongoDB.NetCore.xproj"
 $github = "ByNeo/NLog.MongoDB.NetCore"
 $sonarQubeID = "NLog.MongoDB.NetCore"
 $sonarQubeHost = "https://sonarcloud.io"
-$sonarToken = "2388c8ee17b65bc2fcc7d45e7ecd6988fe2d5825"
+$sonarToken = "QX9qNOgu0aFrYoIbe1MFqrXxW8kqEmB2RvTrCq12Xi2fF79K4V9jbjCqmtXiEnl5"
 
 if($env:APPVEYOR_REPO_NAME -eq $github){
 
