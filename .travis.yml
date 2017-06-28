@@ -2,22 +2,26 @@ language: csharp
 mono: none
 dotnet: 1.0.0-preview2-003131
 dist: trusty
-sudo: false
+sudo: required
 
-before_install:
-  - sudo apt-get update -qq
+install:
+  # Display dotnet version info
+  - which dotnet;
+    if [ $? -eq 0 ]; then
+      echo "Using dotnet:";
+      dotnet --info;
+    else
+      echo "dotnet.exe not found"
+      exit 1;
+    fi
 
 before_script:
   # Restore dependencies
   - dotnet restore -v Minimal
 
 script:
-  - dotnet build "src/NLog.MongoDB.NetCore" -c Release
+  - dotnet build src/NLog.MongoDB.NetCore -c Release
   #- dotnet build tests/NLog.MongoDB.NetCore.ConsoleTest -c Debug
 
   # Run tests
   #- dotnet test tests/NLog.UnitTests --configuration Release -f netcoreapp1.0
-
-cache:
-  directories:
-    - $HOME/.nuget/packages
