@@ -16,5 +16,5 @@ script:
   #- dotnet test tests/NLog.UnitTests --configuration Release -f netcoreapp1.0
 
 cache:
-directories:
-  - $HOME/.nuget/packages
+  directories:
+    - $HOME/.nuget/packages
