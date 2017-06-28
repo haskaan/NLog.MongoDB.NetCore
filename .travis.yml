@@ -15,6 +15,9 @@ install:
       exit 1;
     fi
 
+before_install:
+  - sudo apt-get update -qq
+
 before_script:
   # Restore dependencies
   - dotnet restore -v Minimal
