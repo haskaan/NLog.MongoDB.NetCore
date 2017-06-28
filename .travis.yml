@@ -2,7 +2,7 @@ language: csharp
 mono: none
 dotnet: 1.0.0-preview2-003131
 dist: trusty
-sudo: required
+sudo: false
 
 install:
   # Display dotnet version info
@@ -21,7 +21,7 @@ before_script:
 
 script:
   - dotnet build src/NLog.MongoDB.NetCore -c Release
-  - dotnet build tests/NLog.MongoDB.NetCore.ConsoleTest -c Debug
+  #- dotnet build tests/NLog.MongoDB.NetCore.ConsoleTest -c Debug
 
   # Run tests
   #- dotnet test tests/NLog.UnitTests --configuration Release -f netcoreapp1.0
