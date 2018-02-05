@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using NLog.Layouts;
 
 namespace NLog.MongoDB.NetCore
 {
@@ -19,6 +20,11 @@ namespace NLog.MongoDB.NetCore
     [Target("Mongo")]
     public class MongoTarget : Target, IMongoTarget
     {
+        static MongoTarget()
+        {
+            BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
+        }
+
         #region Fields
 
         private static readonly ConcurrentDictionary<string, IMongoCollection<BsonDocument>> _collectionCache = new ConcurrentDictionary<string, IMongoCollection<BsonDocument>>();
@@ -71,7 +77,7 @@ namespace NLog.MongoDB.NetCore
         /// <value>
         /// The name of the database.
         /// </value>
-        public string DatabaseName { get; set; }
+        public Layout DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the collection.
@@ -79,7 +85,7 @@ namespace NLog.MongoDB.NetCore
         /// <value>
         /// The name of the collection.
         /// </value>
-        public string CollectionName { get; set; }
+        public Layout CollectionName { get; set; }
 
         /// <summary>
         /// Gets or sets the size in bytes of the capped collection.
@@ -147,10 +153,13 @@ namespace NLog.MongoDB.NetCore
 
             try
             {
-                var documents = logEvents.Select(e => CreateDocument(e.LogEvent));
+                var groupings = logEvents
+                    .Select(e => Tuple.Create(CreateDocument(e.LogEvent),
+                        GetCollection(e.LogEvent)))
+                    .GroupBy(tuple => tuple.Item2);
 
-                var collection = GetCollection();
-                collection.InsertMany(documents);
+                foreach (var grouping in groupings)
+                    grouping.Key.InsertMany(grouping.Select(g => g.Item1));
 
                 foreach (var ev in logEvents)
                     ev.Continuation(null);
@@ -179,7 +188,7 @@ namespace NLog.MongoDB.NetCore
             try
             {
                 var document = CreateDocument(logEvent);
-                var collection = GetCollection();
+                var collection = GetCollection(logEvent);
                 collection.InsertOne(document);
             }
             catch (Exception ex)
@@ -316,25 +325,26 @@ namespace NLog.MongoDB.NetCore
             return new BsonString(value);
         }
 
-        private IMongoCollection<BsonDocument> GetCollection()
+        private IMongoCollection<BsonDocument> GetCollection(LogEventInfo logEvent)
         {
+            string connectionName = ConnectionName ?? string.Empty;
+            string connectionString = ConnectionString ?? string.Empty;
+
+            var mongoUrl = new MongoUrl(connectionString);
+            string databaseName = DatabaseName.Render(logEvent) ?? mongoUrl.DatabaseName ?? "NLog";
+            string collectionName = CollectionName.Render(logEvent) ?? "Log";
+
             // cache mongo collection based on target name.
-            string key = string.Format("k|{0}|{1}|{2}",
-                ConnectionName ?? string.Empty,
-                ConnectionString ?? string.Empty,
-                CollectionName ?? string.Empty);
+            string key = $"k|{connectionName}|{connectionString}|{databaseName}|{collectionName}";
 
             return _collectionCache.GetOrAdd(key, k =>
             {
                 // create collection
-                var mongoUrl = new MongoUrl(ConnectionString);
                 var client = new MongoClient(mongoUrl);
 
                 // Database name overrides connection string
-                var databaseName = DatabaseName ?? mongoUrl.DatabaseName ?? "NLog";
                 var database = client.GetDatabase(databaseName);
 
-                string collectionName = CollectionName ?? "Log";
                 if (!CappedCollectionSize.HasValue || CollectionExists(database, collectionName))
                     return database.GetCollection<BsonDocument>(collectionName);
 

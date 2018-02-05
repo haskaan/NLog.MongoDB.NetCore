@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.MongoDB.NetCore
 {
@@ -37,7 +38,7 @@ namespace NLog.MongoDB.NetCore
         /// <value>
         /// The name of the database.
         /// </value>
-        string DatabaseName { get; set; }
+        Layout DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the collection.
@@ -45,7 +46,7 @@ namespace NLog.MongoDB.NetCore
         /// <value>
         /// The name of the collection.
         /// </value>
-        string CollectionName { get; set; }
+        Layout CollectionName { get; set; }
 
         /// <summary>
         /// Gets or sets the size in bytes of the capped collection.
